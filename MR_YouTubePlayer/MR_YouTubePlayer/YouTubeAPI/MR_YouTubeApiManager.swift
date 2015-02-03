@@ -76,7 +76,7 @@ class MR_YouTubeApiManager : NSObject {
     func downloadImageWithUrlString(urlString: NSString, withCompletionHandler completionHandler:DownloadingImageCompletionBlock, withDownloadProgressHandler progressHandler:DownloadingImageProgressBlock) {
         
         //Download-Now
-        let url:NSURL=NSURL.URLWithString(urlString)
+        let url:NSURL=NSURL(string:urlString)!
         downloadImageWithUrl(url, withCompletionHandler: completionHandler, withDownloadProgressHandler: progressHandler)
     }
     
@@ -93,7 +93,7 @@ class MR_YouTubeApiManager : NSObject {
     //***********************************************************************
     func callWebServiceWithUrlString(urlString: NSString, serviceType type: NSString?, ServiceParameters parameters: Dictionary<String,AnyObject>?, withCompletionHandler completionHandler:JsonResponseCompletionBlock) {
         //Download-Now
-        let url:NSURL=NSURL.URLWithString(urlString)
+        let url:NSURL=NSURL(string:urlString)!
         callWebServiceWithUrlString(url, serviceType: type, ServiceParameters: parameters, withCompletionHandler: completionHandler)
     }
     

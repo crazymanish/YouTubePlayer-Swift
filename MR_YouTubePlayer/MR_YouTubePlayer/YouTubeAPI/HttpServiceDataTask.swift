@@ -71,7 +71,7 @@ class HttpServiceDataTask: NSObject,NSURLSessionDataDelegate {
         if parameters != nil {
             queryString = NSString(format:"%@?",url.absoluteString!) as String
             queryString = NSString(format:"%@%@",queryString,downloadingTask.stringFromParameters(parameters!)) as String
-            completeUrl = NSURL.URLWithString(queryString)
+            completeUrl = NSURL(string:queryString)!
         }
         
         //Prepare-Request

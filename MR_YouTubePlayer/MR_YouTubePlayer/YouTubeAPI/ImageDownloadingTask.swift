@@ -90,7 +90,7 @@ class ImageDownloadingTask: NSObject,NSURLSessionDownloadDelegate {
         //Complition Block with Sucess Image
         let imagePath:NSString=location.path!
         let imageData:NSData=NSFileManager.defaultManager().contentsAtPath(imagePath)!
-        let image:UIImage=UIImage(data: imageData)
+        let image:UIImage=UIImage(data: imageData)!
         //Call Blocak Now
         completionBlock!(image:image,imageUrl: downloadTask.originalRequest.URL,error:nil)
     }

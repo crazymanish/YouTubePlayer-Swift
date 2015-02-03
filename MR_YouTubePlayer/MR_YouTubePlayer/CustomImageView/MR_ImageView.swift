@@ -67,7 +67,7 @@ class MR_ImageView : UIImageView {
     // MARK: - Download Image
     //***********************************************************************
     func downloadImageWithUrlString(urlString: NSString){
-        var url:NSURL=NSURL.URLWithString(urlString)
+        var url:NSURL=NSURL(string:urlString)!
         self.downloadImageWithUrlString(url)
     }
     func downloadImageWithUrlString(url: NSURL){
@@ -78,7 +78,7 @@ class MR_ImageView : UIImageView {
     // MARK: - Download Image With Place-Holder Image
     //***********************************************************************
     func downloadImageWithUrlString(urlString: NSString, withPlaceholderImage placeholderImage:UIImage?){
-        var url:NSURL=NSURL.URLWithString(urlString)
+        var url:NSURL=NSURL(string:urlString)!
         self.downloadImageWithUrlString(url, withPlaceholderImage: placeholderImage)
     }
     func downloadImageWithUrlString(url: NSURL, withPlaceholderImage placeholderImage:UIImage?){

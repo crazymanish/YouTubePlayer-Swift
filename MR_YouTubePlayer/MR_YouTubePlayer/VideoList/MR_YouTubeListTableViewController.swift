@@ -154,7 +154,7 @@ class MR_YouTubeListTableViewController: UITableViewController,UITableViewDataSo
     private func playVideoWithVideoQualityType(qualityType:VideoQualityType)
     {
         if (selectedRow >= 0) {
-            let url:NSURL=NSURL.URLWithString((videoList[selectedRow]["videoUrl"] as NSString))
+            let url:NSURL=NSURL(string:(videoList[selectedRow]["videoUrl"] as NSString))!
             
             HCYoutubeParser.h264videosWithYoutubeURL(url, completeBlock: { (videoFormatDictionary, error) -> Void in
                 if error == nil {
@@ -223,7 +223,7 @@ class MR_YouTubeListTableViewController: UITableViewController,UITableViewDataSo
         dataDictionary["start-index"] = currentPageNumber+1
         dataDictionary["q"] = self.videoSearchBar.text
         
-        let url:NSURL = NSURL.URLWithString(searchYouTubeVideoUrlString)
+        let url:NSURL = NSURL(string:searchYouTubeVideoUrlString)!
         MR_YouTubeApiManager.sharedInstance.callWebServiceWithUrlString(url, serviceType: "GET", ServiceParameters:dataDictionary, withCompletionHandler: { (responseObject, urlResponse, error) -> Void in
             if responseObject == nil {
                 //Update UI in main-thread
