@@ -157,7 +157,7 @@ class MR_YouTubeListTableViewController: UITableViewController,UITableViewDataSo
             let url:NSURL=NSURL(string:(videoList[selectedRow]["videoUrl"] as NSString))!
             
             HCYoutubeParser.h264videosWithYoutubeURL(url, completeBlock: { (videoFormatDictionary, error) -> Void in
-                if error == nil {
+                if videoFormatDictionary != nil {
                     var videoString: String?
                     var videoFormat: String!
                     switch qualityType {
@@ -184,7 +184,11 @@ class MR_YouTubeListTableViewController: UITableViewController,UITableViewDataSo
                         self.presentViewController(mediaPlayer, animated: true, completion: nil)
                     }
                 }else {
-                    var alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                    var errorString: NSString  = "Selected video format not found,Unexpected error."
+                    if error != nil {
+                        errorString = error.localizedDescription
+                    }
+                    var alert = UIAlertController(title: "Error", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler:self.alertViewCancelButtonHandler))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
@@ -228,7 +232,7 @@ class MR_YouTubeListTableViewController: UITableViewController,UITableViewDataSo
             if responseObject == nil {
                 //Update UI in main-thread
                 dispatch_async(dispatch_get_main_queue(), {
-                    var alert = UIAlertController(title: "Error", message: "Something wrong going on.", preferredStyle: UIAlertControllerStyle.Alert)
+                    var alert = UIAlertController(title: "Error", message:"Something wrong going on.", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler:self.alertViewCancelButtonHandler))
                     self.presentViewController(alert, animated: true, completion: nil)
                 })
